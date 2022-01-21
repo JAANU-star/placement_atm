@@ -2,82 +2,82 @@ import java.util.*;
 
 public class Amazon {
     static Scanner sc = new Scanner(System.in);
-    static String Admin_Id = "Admin";
-    static String Admin_Password = "1234";
-    static int Admin_attempt = 3;
-    static int Merchant_attempt = 3;
-    static int User_Attempt = 3;
+    static String Ad_Id = "Ad";
+    static String Ad_Password = "1234";
+    static int Ad_attempt = 3;
+    static int meraant_log_attempt = 3;
+    static int User_log_Attempt = 3;
     static int M_Id = 1;
     static int U_Id = 1;
-    static int Current_Merchant = -1;
-    static int Current_User = -1;
+    static int Current_meraant_log = -1;
+    static int Current_User_log = -1;
     static Dictionary<String, ArrayList<String>> All_Products = new Hashtable<>();
-    static ArrayList<Create_Merchant_obj> Merchants = new ArrayList<>();
-    static ArrayList<Creat_User_Obj> User_List = new ArrayList<>();
+    static ArrayList<Create_meraant_log_obj> meraant_logs = new ArrayList<>();
+    static ArrayList<Creat_User_log_Obj> User_log_List = new ArrayList<>();
     static void Clr_scr() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    static void Admin_Login() {
-        while (Admin_attempt >= 0) {
-            System.out.print("Welcome to Admin Login \nEnter the Admin Id : ");
+    static void ad_log() {
+        while (Ad_attempt >= 0) {
+            System.out.print("Welcome to Ad Login \nEnter the Ad Id : ");
             String ID = sc.next();
             sc.nextLine();
-            System.out.print("\nEnter the Admin Password : ");
+            System.out.print("\nEnter the Ad Password : ");
             String Password = sc.next();
             sc.nextLine();
-            if (ID.equals(Admin_Id) && Password.equals(Admin_Password)) {
-                Admin();
+            if (ID.equals(Ad_Id) && Password.equals(Ad_Password)) {
+                Ad();
             } else {
-                Admin_attempt -= 1;
+                Ad_attempt -= 1;
                 System.out.println(
-                        "You have entered the wrong Password!\nYou have only " + Admin_attempt + " Attempts :-)");
+                        "You have entered the wrong Password!\nYou have only " + Ad_attempt + " Attempts :-)");
             }
         }
     }
-    static void Admin() {
+    static void Ad() {
         while (true) {
             System.out.println(
-                    "Welcome to Admin Panel\n1 => View all Products\n2 => Add new Merchent\n3 => Merchant's Approval\n4 => List of Merchents\n5 => Delete Merchant\n6 => Add new Product\n7 => Back");
-            int Chooise = sc.nextInt();
-            if (Chooise == 1) {
+                    "Welcome to Ad Panel\n1 => View all Products\n2 => Add new mera_logent\n3 => meraant_log's Approval\n4 => List of mera_logents\n5 => Delete meraant_log\n6 => Add new Product\n7 => Back");
+            int i = sc.nextInt();
+            if (i == 1) {
                 Clr_scr();
                 System.out.println(All_Products);
-            } else if (Chooise == 2) {
-                Add_Merchent();
-            } else if (Chooise == 3) {
-                System.out.println("Enter Merchant Id : ");
+            } else if (i == 2) {
+                Add_mera_logent();
+            } else if (i == 3) {
+                System.out.println("Enter meraant_log Id : ");
                 String MerId = sc.next();
                 sc.nextLine();
-                for (Create_Merchant_obj merch : Merchants) {
-                    if (MerId.equals(Integer.toString(merch.M_Id))) {
-                        merch.M_Verified = "Yes";
-                        System.out.println("==> Merchant Name : " + merch.M_Name + " Merchant Id : " + merch.M_Id
-                                + " is Verified : " + merch.M_Verified);
+                for (Create_meraant_log_obj mera_log : meraant_logs) {
+                    if (MerId.equals(Integer.toString(mera_log.M_Id))) {
+                        mera_log.M_Verified = "Yes";
+                        System.out.println("==> meraant_log Name : " + mera_log.M_Name + " meraant_log Id : " + mera_log.M_Id
+                                + " is Verified : " + mera_log.M_Verified);
                     } else {
-                        System.out.println("User Id is not founded");
+                        System.out.println("User_log Id is not founded");
                     }
                 }
-            } else if (Chooise == 4) {
-                List_Of_Merchents();
-            } else if (Chooise == 5) {
-                System.out.print("Enter the Id of the Merchant : ");
+            } else if (i == 4) {
+                List_Of_mera_logents();
+            } else if (i == 5) {
+                System.out.print("Enter the Id of the meraant_log : ");
                 String id = sc.next();
                 sc.nextLine();
                 int temp = -1;
                 int i = 0;
-                for (Create_Merchant_obj merch : Merchants) {
-                    if ((Integer.toString(merch.M_Id)).equals(id)) {
+                for (Create_meraant_log_obj mera_log : meraant_logs) {
+                    if ((Integer.toString(mera_log.M_Id)).equals(id)) {
                         temp = i;
                     }
                     i += 1;
                 }
                 if (temp != -1) {
-                    Merchants.remove(temp);
+                    meraant_logs.remove(temp);
                 } else {
-                    System.out.println("Id is not match with any other Id's :-)");
+                    System.out.println("Id is not mata with any other Id's :-)");
                 }
-            } else if (Chooise == 6) {
+            } else if (i == 6) {
                 System.out.print("Enter the Product Name : ");
                 String P_Name = sc.next();
                 sc.nextLine();
@@ -97,101 +97,101 @@ public class Amazon {
                 } else {
                     System.out.println("Product is already found in the List !");
                 }
-            } else if (Chooise == 7) {
+            } else if (i == 7) {
                 main(null);
             } else {
-                System.out.println("Enter the valid Chooise !");
+                System.out.println("Enter the valid i !");
             }
         }
     }
 
-    public static void List_Of_Merchents() {
-        System.out.println("Merchants Names :");
-        for (Create_Merchant_obj merch : Merchants) {
-            System.out.println("==> Merchant Name : " + merch.M_Name + " Merchant Id : " + merch.M_Id
-                    + " is Verified : " + merch.M_Verified);
+    public static void List_Of_mera_logents() {
+        System.out.println("meraant_logs Names :");
+        for (Create_meraant_log_obj mera_log : meraant_logs) {
+            System.out.println("==> meraant_log Name : " + mera_log.M_Name + " meraant_log Id : " + mera_log.M_Id
+                    + " is Verified : " + mera_log.M_Verified);
         }
     }
 
-    public static void Add_Merchent() {
-        System.out.print("Enter Merchent Name : ");
+    public static void Add_mera_logent() {
+        System.out.print("Enter mera_logent Name : ");
         String name = sc.next();
         sc.nextLine();
-        System.out.print("Enter Merchent Password : ");
+        System.out.print("Enter mera_logent Password : ");
         String password = sc.next();
         sc.nextLine();
-        Merchants.add(new Create_Merchant_obj(name, password, "Yes", M_Id));
-        System.out.println("Your User Id => " + M_Id);
+        meraant_logs.add(new Create_meraant_log_obj(name, password, "Yes", M_Id));
+        System.out.println("Your User_log Id => " + M_Id);
         M_Id += 1;
     }
-    static void Merch() {
-        System.out.println("Welcome to Merchant \n1 => For Login\n2 => For Regester\n3 => Back");
-        int Ch = sc.nextInt();
-        if (Ch == 1) {
+    static void mera_log() {
+        System.out.println("Welcome to meraant_log \n1 => For Login\n2 => For Regester\n3 => Back");
+        int a = sc.nextInt();
+        if (a == 1) {
             Mer_Login();
-        } else if (Ch == 2) {
-            Mer_Reg(Ch);
-        } else if (Ch == 3) {
+        } else if (a == 2) {
+            Mer_Reg(a);
+        } else if (a == 3) {
             main(null);
         } else {
-            System.out.println("Enter the valid Chooise !");
+            System.out.println("Enter the valid i !");
         }
     }
 
     static void Mer_Login() {
-        while (Merchant_attempt >= 0 || true) {
-            System.out.print("Welcome to Merchant Login \nEnter your Id : ");
+        while (meraant_log_attempt >= 0 || true) {
+            System.out.print("Welcome to meraant_log Login \nEnter your Id : ");
             String ID = sc.next();
             sc.nextLine();
             System.out.print("\nEnter your Password : ");
             String Password = sc.next();
             sc.nextLine();
             int i = 0;
-            for (Create_Merchant_obj merch : Merchants) {
-                if (ID.equals(Integer.toString(merch.M_Id)) && Password.equals(merch.M_Password)) {
-                    if (merch.M_Verified.equals("Yes")) {
-                        Merchant_attempt = 3;
-                        Current_Merchant = i;
-                        Merchant();
+            for (Create_meraant_log_obj mera_log : meraant_logs) {
+                if (ID.equals(Integer.toString(mera_log.M_Id)) && Password.equals(mera_log.M_Password)) {
+                    if (mera_log.M_Verified.equals("Yes")) {
+                        meraant_log_attempt = 3;
+                        Current_meraant_log = i;
+                        meraant_log();
                     } else {
-                        System.out.println("User is not verified !");
-                        Merch();
+                        System.out.println("User_log is not verified !");
+                        mera_log();
                     }
                 }
                 i += 1;
             }
-            Merchant_attempt -= 1;
-            Merch();
+            meraant_log_attempt -= 1;
+            mera_log();
         }
     }
-    static void Mer_Reg(int Ch) {
-        System.out.println("\nMerchent Register \nEnter Your Name : ");
+    static void Mer_Reg(int a) {
+        System.out.println("\nmera_logent Register \nEnter Your Name : ");
         String name = sc.next();
         sc.nextLine();
         System.out.println("Enter your Password : ");
         String password = sc.next();
         sc.nextLine();
-        Merchants.add(new Create_Merchant_obj(name, password, "No", M_Id));
-        System.out.println("Your User Id => " + M_Id);
+        meraant_logs.add(new Create_meraant_log_obj(name, password, "No", M_Id));
+        System.out.println("Your User_log Id => " + M_Id);
         M_Id += 1;
-        Merch();
+        mera_log();
     }
-    static void Merchant() {
+    static void meraant_log() {
         while (true) {
             System.out.println(
-                    "Welcome to Merchant Panal\n1 => Add Product\n2 => Update Product\n3 => Compare Product\n4 => Remove Product\n5 => List the Products\n6 => Back");
-            int Ch = sc.nextInt();
-            if (Ch == 1) {
-                Add_Product(Current_Merchant);
-            } else if (Ch == 2) {
-                M_Update_Product();
-            } else if (Ch == 3) {
-                M_Comp_Product();
-            } else if (Ch == 4) {
-                M_Remove_Product();
-            } else if (Ch == 5) {
-                M_Show_List();
-            } else if (Ch == 6) {
+                    "Welcome to meraant_log Panal\n1 => Add Product\n2 => Update Product\n3 => Compare Product\n4 => Remove Product\n5 => List the Products\n6 => Back");
+            int a = sc.nextInt();
+            if (a == 1) {
+                Add_Product(Current_meraant_log);
+            } else if (a == 2) {
+                Meraant_Update_Product();
+            } else if (a == 3) {
+                Meraant_Comp_Product();
+            } else if (a == 4) {
+                Meraant_Remove_Product();
+            } else if (a == 5) {
+                Meraant_Show_List();
+            } else if (a == 6) {
                 main(null);
             } else {
                 System.out.println("Enter the valid Input !");
@@ -199,18 +199,18 @@ public class Amazon {
         }
     }
 
-    static void M_Comp_Product() {
+    static void Meraant_Comp_Product() {
         System.out.println("Enter the Product Name : ");
         String product = sc.next();
         sc.nextLine();
         System.out.println("Product Name : " + product);
         int k = 0;
-        for (int i = 0; i < Merchants.size(); i++) {
-            Enumeration enu = Merchants.get(i).M_Products.keys();
+        for (int i = 0; i < meraant_logs.size(); i++) {
+            Enumeration enu = meraant_logs.get(i).M_Products.keys();
             while (enu.hasMoreElements()) {
                 if (enu.nextElement().equals(product)) {
-                    System.out.println("Merchant Name : " + Merchants.get(i).M_Name + "  Product Price : "
-                            + Merchants.get(i).M_Products.get(product).get(1));
+                    System.out.println("meraant_log Name : " + meraant_logs.get(i).M_Name + "  Product Price : "
+                            + meraant_logs.get(i).M_Products.get(product).get(1));
                     k += 1;
                 }
             }
@@ -219,13 +219,13 @@ public class Amazon {
             System.out.println("Product is Not Found !");
         }
     }
-    static void M_Remove_Product() {
+    static void Meraant_Remove_Product() {
         System.out.print("Enter the product name : ");
         String product = sc.next();
         sc.nextLine();
         try {
-            List<String> s = Merchants.get(Current_Merchant).M_Products.remove(product);
-            System.out.println(s + "   " + Merchants.get(Current_Merchant).M_Products);
+            List<String> s = meraant_logs.get(Current_meraant_log).M_Products.remove(product);
+            System.out.println(s + "   " + meraant_logs.get(Current_meraant_log).M_Products);
             List<String> arr = new ArrayList<>();
             int count1 = Integer.parseInt(All_Products.get(product).get(0)) - Integer.parseInt(s.get(0));
             String price = All_Products.get(product).get(1);
@@ -233,27 +233,27 @@ public class Amazon {
             arr.add(price);
             All_Products.put(product, (ArrayList<String>) arr);
             System.out.println("Product removed Successfully !");
-        } catch (Exception e) {
+        } cata (Exception e) {
             System.out.println("Product is Not Found in your Product List !");
         }
     }
 
-    static void M_Update_Product() {
+    static void Meraant_Update_Product() {
         try {
             System.out.print("Enter the product name : ");
             String product = sc.next();
             sc.nextLine();
-            if (!Merchants.get(Current_Merchant).M_Products.get(product).get(0).equals("null")) {
+            if (!meraant_logs.get(Current_meraant_log).M_Products.get(product).get(0).equals("null")) {
 
                 System.out.println("Enter the product Count : ");
                 int count = sc.nextInt();
                 System.out.println("Enter the Updated Price : ");
                 int price = sc.nextInt();
                 List<String> arr1 = new ArrayList<>();
-                String h = Merchants.get(Current_Merchant).M_Products.get(product).get(0);
+                String h = meraant_logs.get(Current_meraant_log).M_Products.get(product).get(0);
                 arr1.add(Integer.toString(count));
                 arr1.add(Integer.toString(price));
-                Merchants.get(Current_Merchant).M_Products.put(product, (ArrayList<String>) arr1);
+                meraant_logs.get(Current_meraant_log).M_Products.put(product, (ArrayList<String>) arr1);
                 List<String> arr = new ArrayList<>();
                 int count1 = (Integer.parseInt(All_Products.get(product).get(0))) - (Integer.parseInt(h) - count);
                 arr.add(Integer.toString(count1));
@@ -261,7 +261,7 @@ public class Amazon {
                 All_Products.put(product, (ArrayList<String>) arr);
 
             }
-        } catch (Exception e) {
+        } cata (Exception e) {
             System.out.println("The product is not found in the List !");
         }
     }
@@ -278,7 +278,7 @@ public class Amazon {
             }
         }
         if (k == -1) {
-            System.out.println("Product is not found in the Admin's List !");
+            System.out.println("Product is not found in the Ad's List !");
         } else {
             System.out.println("Enter the count of the product : ");
             int count = sc.nextInt();
@@ -292,82 +292,82 @@ public class Amazon {
             List<String> arr1 = new ArrayList<>();
             String g = "0";
             try {
-                g = Merchants.get(Current_Merchant).M_Products.get(product).get(0);
-            } catch (Exception e) {
+                g = meraant_logs.get(Current_meraant_log).M_Products.get(product).get(0);
+            } cata (Exception e) {
                 System.out.println("");
             }
             count += Integer.parseInt(g);
             arr1.add(Integer.toString(count));
             arr1.add(Integer.toString(price));
-            Merchants.get(Current_Merchant).M_Products.put(product, (ArrayList<String>) arr1);
+            meraant_logs.get(Current_meraant_log).M_Products.put(product, (ArrayList<String>) arr1);
         }
     }
 
-    static void M_Show_List() {
-        System.out.println(Merchants.get(Current_Merchant).M_Products);
+    static void Meraant_Show_List() {
+        System.out.println(meraant_logs.get(Current_meraant_log).M_Products);
     }
-    static void User() {
-        System.out.println("Welcome to User Panel :\n1 => Login\n2 => Register\n3 => Go Back");
-        int Ch = sc.nextInt();
-        User_Attempt = 3;
-        if (Ch == 1) {
-            U_Login();
-        } else if (Ch == 2) {
-            U_Register();
-        } else if (Ch == 3) {
+    static void User_log() {
+        System.out.println("Welcome to User_log Panel :\n1 => Login\n2 => Register\n3 => Go Back");
+        int a = sc.nextInt();
+        User_log_Attempt = 3;
+        if (a == 1) {
+            User_Login();
+        } else if (a == 2) {
+            User_Register();
+        } else if (a == 3) {
             main(null);
         } else {
-            System.out.println("Enter the valid Chooise !");
+            System.out.println("Enter the valid i !");
         }
     }
 
-    static void U_Login() {
-        while (User_Attempt >= 0) {
-            System.out.print("Login Page\nEnter the User User Id : ");
+    static void User_Login() {
+        while (User_log_Attempt >= 0) {
+            System.out.print("Login Page\nEnter the User_log User_log Id : ");
             String id = sc.next();
             sc.nextLine();
             System.out.print("Enter the Password : ");
             String password = sc.next();
             sc.nextLine();
-            for (int i = 0; i < User_List.size(); i++) {
-                if (Integer.toString(User_List.get(i).U_Id).equals(id)
-                        && User_List.get(i).U_Password.equals(password)) {
-                    Current_User = i;
-                    User_panel();
+            for (int i = 0; i < User_log_List.size(); i++) {
+                if (Integer.toString(User_log_List.get(i).U_Id).equals(id)
+                        && User_log_List.get(i).U_Password.equals(password)) {
+                    Current_User_log = i;
+                    User_login_panel();
                     break;
                 }
             }
-            User_Attempt -= 1;
-            User();
+            User_log_Attempt -= 1;
+            User_log();
         }
     }
 
-    static void User_panel() {
-        System.out.println("Hello " + User_List.get(Current_User).U_Name + " Welcome to user Panel : ");
+    static void User_login_panel() {
+        System.out.println("Hello " + User_log_List.get(Current_User_log).U_Name + " Welcome to User_log Panel : ");
         while (true) {
             System.out.println(
-                    "1 => List of Products \n2 => Show Cart \n3 => Purchase History \n4 => Wallet \n5 => Exit ");
-            int Ch = sc.nextInt();
-            if (Ch == 1) {
-                List_User_Products();
-            } else if (Ch == 2) {
-                User_Cart();
-            } else if (Ch == 3) {
-                System.out.println("Purchase History !");
-                for (int k = User_List.get(Current_User).U_Buy.size() - 1; k >= 0; k--) {
-                    System.out.println(User_List.get(Current_User).U_Buy.get(k));
+                    "1 => List of Products \n2 => Show Cart \n3 => Puraase History \n4 => Wallet \n5 => Exit ");
+            int a = sc.nextInt();
+            if (a == 1) {
+                User_login_Products_List();
+            } else if (a == 2) {
+                User_login_Cart_List();
+            } else if (a == 3) {
+                System.out.println("Puraase History !");
+                for (int k = User_log_List.get(Current_User_log).U_Buy.size() - 1; k >= 0; k--) {
+                    System.out.println(User_log_List.get(Current_User_log).U_Buy.get(k));
                 }
-            } else if (Ch == 4) {
+            } else if (a == 4) {
                 Wallet();
-            } else if (Ch == 5) {
+            } else if (a == 5) {
                 main(null);
             } else {
-                System.out.println("Please Enter the valid Chooise !");
+                System.out.println("Please Enter the valid i !");
             }
         }
     }
 
-    static void List_User_Products() {
+    static void User_login_Products_List() {
         while (true) {
             Enumeration enu = All_Products.keys();
             while (enu.hasMoreElements()) {
@@ -376,18 +376,18 @@ public class Amazon {
                         + All_Products.get(pro).get(0));
             }
             System.out.println("1 => Add to Cart \n2 => Back");
-            int Ch = sc.nextInt();
-            if (Ch == 1) {
-                Buy_User();
-            } else if (Ch == 2) {
-                User_panel();
+            int a = sc.nextInt();
+            if (a == 1) {
+                User_Buy_login();
+            } else if (a == 2) {
+                User_login_panel();
             } else {
-                System.out.println("Please Enter the valid Chooise !");
+                System.out.println("Please Enter the valid i !");
             }
         }
     }
 
-    static void Buy_User() {
+    static void User_Buy_login() {
         System.out.print("Enter the Product Name : ");
         String Product = sc.next();
         sc.nextLine();
@@ -400,21 +400,21 @@ public class Amazon {
         if (k == -1) {
             System.out.println("Product Out Of Stock !");
         } else {
-            Show_Product_List(Product);
+            Show_Products_List(Product);
         }
     }
 
-    static void Show_Product_List(String product) {
+    static void Show_Products_List(String product) {
         int k = 0;
-        for (int i = 0; i < Merchants.size(); i++) {
-            Enumeration enu = Merchants.get(i).M_Products.keys();
+        for (int i = 0; i < meraant_logs.size(); i++) {
+            Enumeration enu = meraant_logs.get(i).M_Products.keys();
             while (enu.hasMoreElements()) {
                 if (enu.nextElement().equals(product)
-                        && Integer.parseInt(Merchants.get(i).M_Products.get(product).get(0)) > 0) {
-                    System.out.println("==> Merchant Name : " + Merchants.get(i).M_Name + " -- Merchant Id : "
-                            + Merchants.get(i).M_Id + "  --Product Count : "
-                            + Merchants.get(i).M_Products.get(product).get(0) + "  --Product Price : "
-                            + Merchants.get(i).M_Products.get(product).get(1));
+                        && Integer.parseInt(meraant_logs.get(i).M_Products.get(product).get(0)) > 0) {
+                    System.out.println("==> meraant_log Name : " + meraant_logs.get(i).M_Name + " -- meraant_log Id : "
+                            + meraant_logs.get(i).M_Id + "  --Product Count : "
+                            + meraant_logs.get(i).M_Products.get(product).get(0) + "  --Product Price : "
+                            + meraant_logs.get(i).M_Products.get(product).get(1));
                     k += 1;
                 }
             }
@@ -423,28 +423,28 @@ public class Amazon {
             System.out.println("Product is Not Found !");
         } else {
 
-            System.out.print("Enter the Merchant Id :");
+            System.out.print("Enter the meraant_log Id :");
             String M_Id = sc.next();
             sc.nextLine();
             int not = 0;
 
-            for (int i = 0; i < Merchants.size(); i++) {
+            for (int i = 0; i < meraant_logs.size(); i++) {
 
-                if (Integer.toString(Merchants.get(i).M_Id).equals(M_Id)) {
+                if (Integer.toString(meraant_logs.get(i).M_Id).equals(M_Id)) {
 
                     System.out.println(M_Id + " -- " + product);
                     System.out.print("Enter the Product Count : ");
                     int count = sc.nextInt();
 
-                    if (Integer.parseInt(Merchants.get(i).M_Products.get(product).get(0)) >= count) {
+                    if (Integer.parseInt(meraant_logs.get(i).M_Products.get(product).get(0)) >= count) {
 
                         List<String> arr = new ArrayList<>();
 
                         arr.add(Integer
-                                .toString(Integer.parseInt(Merchants.get(i).M_Products.get(product).get(0)) - count));
-                        arr.add(Merchants.get(i).M_Products.get(product).get(1));
+                                .toString(Integer.parseInt(meraant_logs.get(i).M_Products.get(product).get(0)) - count));
+                        arr.add(meraant_logs.get(i).M_Products.get(product).get(1));
 
-                        Merchants.get(i).M_Products.put(product, (ArrayList<String>) arr);
+                        meraant_logs.get(i).M_Products.put(product, (ArrayList<String>) arr);
 
                         List<String> arr1 = new ArrayList<>();
 
@@ -456,18 +456,18 @@ public class Amazon {
                         int cou = 0;
               
                         try {
-                            cou = Integer.parseInt(User_List.get(Current_User).U_Cart.get(product).get(0));
-                        } catch (Exception e) {
+                            cou = Integer.parseInt(User_log_List.get(Current_User_log).U_Cart.get(product).get(0));
+                        } cata (Exception e) {
                             cou = 0;
                         }
 
                         List<String> arr2 = new ArrayList<>();
 
                         arr2.add(Integer.toString(count + cou));
-                        arr2.add(Merchants.get(i).M_Products.get(product).get(1));
-                        product = Merchants.get(i).M_Id + "-" + product;
+                        arr2.add(meraant_logs.get(i).M_Products.get(product).get(1));
+                        product = meraant_logs.get(i).M_Id + "-" + product;
 
-                        User_List.get(Current_User).U_Cart.put(product, (ArrayList<String>) arr2);
+                        User_log_List.get(Current_User_log).U_Cart.put(product, (ArrayList<String>) arr2);
 
                         System.out.println("--------Added to Cart SuccessFully--------");
                         not = 1;
@@ -481,17 +481,17 @@ public class Amazon {
                 }
             }
             if (not == 0) {
-                System.out.println("User Not Found !");
+                System.out.println("User_log Not Found !");
             }
         }
     }
-    static void User_Cart() {
+    static void User_login_Cart_List() {
         while (true) {
-            System.out.println(User_List.get(Current_User).U_Cart);
+            System.out.println(User_log_List.get(Current_User_log).U_Cart);
             System.out.println("1 => Buy \n2 => Back");
-            int ch = sc.nextInt();
+            int a = sc.nextInt();
 
-            if (ch == 1) {
+            if (a == 1) {
                 System.out.println("Enter the Product Name :");
                 String product = sc.next();
                 sc.nextLine();
@@ -501,31 +501,31 @@ public class Amazon {
                     System.out.println("Enter the Product Count : ");
                     int count = sc.nextInt();
 
-                    if (count <= Integer.parseInt(User_List.get(Current_User).U_Cart.get(product).get(0))) {
-                        if (Integer.parseInt(User_List.get(Current_User).U_Cart.get(product).get(0)) > 0) {
+                    if (count <= Integer.parseInt(User_log_List.get(Current_User_log).U_Cart.get(product).get(0))) {
+                        if (Integer.parseInt(User_log_List.get(Current_User_log).U_Cart.get(product).get(0)) > 0) {
 
                             if (count
                                     * Integer.parseInt(
-                                            User_List.get(Current_User).U_Cart.get(product).get(1)) <= User_List
-                                                    .get(Current_User).U_Money) {
+                                            User_log_List.get(Current_User_log).U_Cart.get(product).get(1)) <= User_log_List
+                                                    .get(Current_User_log).U_Money) {
 
                                 List<String> arr = new ArrayList<>();
 
                                 arr.add(Integer.toString(
-                                        Integer.parseInt(User_List.get(Current_User).U_Cart.get(product).get(0))
+                                        Integer.parseInt(User_log_List.get(Current_User_log).U_Cart.get(product).get(0))
                                                 - count));
-                                arr.add(User_List.get(Current_User).U_Cart.get(product).get(1));
+                                arr.add(User_log_List.get(Current_User_log).U_Cart.get(product).get(1));
 
-                                User_List.get(Current_User).U_Cart.put(product, (ArrayList<String>) arr);
+                                User_log_List.get(Current_User_log).U_Cart.put(product, (ArrayList<String>) arr);
 
-                                User_List.get(Current_User).U_Buy
+                                User_log_List.get(Current_User_log).U_Buy
                                         .add(java.time.LocalDateTime.now() + " ---Buy--- " + product + " ---Price--- "
                                                 + count
-                                                        * Integer.parseInt(User_List.get(Current_User).U_Cart
+                                                        * Integer.parseInt(User_log_List.get(Current_User_log).U_Cart
                                                                 .get(product).get(1)));
 
-                                User_List.get(Current_User).U_Money -= (count
-                                        * Integer.parseInt(User_List.get(Current_User).U_Cart.get(product).get(1)));
+                                User_log_List.get(Current_User_log).U_Money -= (count
+                                        * Integer.parseInt(User_log_List.get(Current_User_log).U_Cart.get(product).get(1)));
 
                                 System.out.println("------Success------");
 
@@ -538,83 +538,83 @@ public class Amazon {
                     } else {
                         System.out.println("Count is more than the Available Count in the Cart !");
                     }
-                } catch (Exception e) {
+                } cata (Exception e) {
                     System.out.println("Product Not Found !");
                 }
-            } else if (ch == 2) {
-                User_panel();
+            } else if (a == 2) {
+                User_login_panel();
             } else {
-                System.out.println("Please Enter the valid Chooise !");
+                System.out.println("Please Enter the valid i !");
             }
         }
     }
 
     static void Wallet() {
         while (true) {
-            System.out.println("1 => Check Balance \n2 => Deposite \n3 => Statement \n4 => Back");
-            int ch = sc.nextInt();
+            System.out.println("1 => aeck Balance \n2 => Deposite \n3 => Statement \n4 => Back");
+            int a = sc.nextInt();
 
-            if (ch == 1) {
-                System.out.println("User Name : " + User_List.get(Current_User).U_Name + "\nAvailable Balance : "
-                        + User_List.get(Current_User).U_Money);
+            if (a == 1) {
+                System.out.println("User_log Name : " + User_log_List.get(Current_User_log).U_Name + "\nAvailable Balance : "
+                        + User_log_List.get(Current_User_log).U_Money);
             }
 
-            else if (ch == 2) {
+            else if (a == 2) {
                 System.out.println("Enter the Amount : ");
                 int amount = sc.nextInt();
-                User_List.get(Current_User).Statement.add(
+                User_log_List.get(Current_User_log).Statement.add(
                         java.time.LocalDateTime.now() + "---Deposit---"
-                                + (amount + User_List.get(Current_User).U_Money));
-                User_List.get(Current_User).U_Money += amount;
+                                + (amount + User_log_List.get(Current_User_log).U_Money));
+                User_log_List.get(Current_User_log).U_Money += amount;
                 System.out.println("Amount Added Successfully !");
             }
 
            
-            else if (ch == 3) {
+            else if (a == 3) {
                 System.out.println("Mini Statement !");
-                for (int k = User_List.get(Current_User).Statement.size() - 1; k >= 0; k--) {
-                    System.out.println(User_List.get(Current_User).Statement.get(k));
+                for (int k = User_log_List.get(Current_User_log).Statement.size() - 1; k >= 0; k--) {
+                    System.out.println(User_log_List.get(Current_User_log).Statement.get(k));
                 }
             }
 
           
-            else if (ch == 4) {
-                User_panel();
+            else if (a == 4) {
+                User_login_panel();
             }
 
             else {
-                System.out.println("Enter the valid chooise !");
+                System.out.println("Enter the valid i !");
             }
         }
     }
 
-    static void U_Register() {
-        System.out.print("Register Page\nEnter the User User Name : ");
+    static void User_Register() {
+        System.out.print("Register Page\nEnter the User_log User_log Name : ");
         String name = sc.next();
         sc.nextLine();
         System.out.print("Enter the Password : ");
         String password = sc.next();
         sc.nextLine();
-        User_List.add(new Creat_User_Obj(name, password, U_Id));
-        System.out.println("User Registered successfuly !\n\nYour U_Id : " + U_Id + "\n");
+        User_log_List.add(new Creat_User_log_Obj(name, password, U_Id));
+        System.out.println("User_log Registered successfuly !\n\nYour U_Id : " + U_Id + "\n");
         U_Id += 1;
-        U_Login();
+        User_Login();
     }
 
     public static void main(String args[]) {
-        System.out.println("\tWelcome to Amazon.com \nChoose one of the following :");
+        System.out.println("\tWelcome to Amazon.com \naoose one of the following :");
         while (true) {
-            System.out.println("1 => Admin\n2 => Merchant\n3 => User\n4 => Exit");
+            System.out.println("1 => Ad\n2 => meraant_log\n3 => User_log\n4 => Exit");
             int n = sc.nextInt();
             if (n == 1) {
                 Clr_scr();
-                Admin_Login();
+                ad_log();
             } else if (n   == 2) {
                 Clr_scr();
-                Merch();
+                mera_log();
             } else if (n == 3) {
                 Clr_scr();
-                User();
+                User_log();
             } else if (n == 4) {
                 Clr_scr();
                 System.out.println("Thank you for your visit !");
@@ -626,12 +626,12 @@ public class Amazon {
     }
 }
 
-class Create_Merchant_obj {
+class Create_meraant_log_obj {
     public String M_Name, M_Password, M_Verified;
     public int M_Id;
     public Dictionary<String, ArrayList<String>> M_Products = new Hashtable<>();
 
-    Create_Merchant_obj(String name, String password, String verified, int id) {
+    Create_meraant_log_obj(String name, String password, String verified, int id) {
         this.M_Name = name;
         this.M_Password = password;
         this.M_Verified = verified;
@@ -640,17 +640,21 @@ class Create_Merchant_obj {
     }
 }
 
-class Creat_User_Obj {
+class Creat_User_log_Obj {
     public String U_Name, U_Password;
     public int U_Id, U_Money;
     public Dictionary<String, ArrayList<String>> U_Cart = new Hashtable<>();
     public List<String> Statement = new ArrayList<>();
     public List<String> U_Buy = new ArrayList<>();
 
-    Creat_User_Obj(String name, String password, int id) {
+    Creat_User_log_Obj(String name, String password, int id) {
         this.U_Name = name;
         this.U_Password = password;
         this.U_Id = id;
         this.U_Money = 0;
     }
 }
+
+   
+      
+ 
