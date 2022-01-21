@@ -4,83 +4,82 @@ import java.time.*;
 public class library {
 static   Scanner sc=new Scanner(System.in);
 static SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
-//static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-//------------------admins-----------------------------
+
 static List<String>admin_mail_id=new ArrayList<>();
 static List<Integer>admin_password=new ArrayList<>();
 static int  current_admin_index;
-//--------------------learners-------------------------
+
 static List<Integer>learner_id=new ArrayList<>();
 static List<String>learner_user_id=new ArrayList<>();
 static List<Integer>learner_password=new ArrayList<>();
 static List<Integer>learner_deposit=new ArrayList<>();
-//-------------------books------------------------------
+
 static List<String>book_name=new ArrayList<>();
 static List<Integer>book_count=new ArrayList<>();
 static List<String>book_type=new ArrayList<>();
 static List<Integer>book_id=new ArrayList<>();
 static List<Integer>book_price=new ArrayList<>();
-//-------------------borrows------------------------------
+
 static List<Integer>borrowid=new ArrayList<>();
 static List<String>borrow_buy_date=new ArrayList<>();
 static List<String>borrow_due_date=new ArrayList<>();
 static List<String>borrow_book_name=new ArrayList<>();
 static List<Integer>borrow_book_id=new ArrayList<>();
 static List<String>borrowedid=new ArrayList<>(); 
-//--------------------current users------------------------
+
 static int current_user_index;
     public static void main(String[] args){
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        //------admins-------
-        admin_mail_id.add("manjit444manjit@gmail.com");
-        admin_password.add(12345);
-        admin_mail_id.add("19ec061@kpriet.ac.in");
-        admin_password.add(12345);
-        //----learner--------
-        learner_id.add(10000);
-        learner_user_id.add("manjit444");
-        learner_deposit.add(1500);
-        learner_password.add(12345);
-        //-----books---------
+        
+        admin_mail_id.add("jkjananieshree@gmail.com");
+        admin_password.add(19876);
+        admin_mail_id.add("20csl02@kpriet.ac.in");
+        admin_password.add(19876);
+        
+        learner_id.add(2000);
+        learner_user_id.add("jkjananieshree");
+        learner_deposit.add(1850);
+        learner_password.add(19876);
+        
         book_type.add("Nonfiction Books");
         book_name.add("The Diary of Anne Frank");
-        book_id.add(100);
+        book_id.add(200);
         book_count.add(10);
-        book_price.add(1200);
+        book_price.add(1250);
 
         book_type.add("Fiction Books");
         book_name.add("The Sun Also Rises");
-        book_id.add(101);
+        book_id.add(201);
         book_count.add(15);
-        book_price.add(900);        
+        book_price.add(850);        
 
         book_type.add("Food");
         book_name.add("Mastering the Art of French Cooking");
-        book_id.add(102);
+        book_id.add(202);
         book_count.add(9);
         book_price.add(850);     
 
         book_type.add("History");
         book_name.add("Killing England");
-        book_id.add(103);
+        book_id.add(203);
         book_count.add(13);
         book_price.add(1850);
 
         book_type.add("Memoir");
         book_name.add("Becoming");
-        book_id.add(104);
+        book_id.add(204);
         book_count.add(8);
         book_price.add(2000);
 
         book_type.add("Politics");
         book_name.add("A Promised Land");
-        book_id.add(105);
+        book_id.add(205);
         book_count.add(8);
-        book_price.add(2700);
-        welcome();
+        book_price.add(1580);
+        Welcome();
          }
-        public static void welcome(){
+        public static void Welcome(){
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("--------------------------------Online Library Management System------------------------------------");
@@ -93,7 +92,7 @@ static int current_user_index;
             System.out.println("Enter your choice: ");
             int admin_choice=sc.nextInt();
             if(admin_choice==1)
-                welcomeadmin();
+                Welcome_ad();
             else if(admin_choice==2)
                 learner();
             else if(admin_choice==3){
@@ -101,7 +100,7 @@ static int current_user_index;
                 System.out.flush();
                 System.out.println("Thanks for using online library management system :)");   
     }}
-    public static void welcomeadmin(){
+    public static void Welcome_ad(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("--------------------------------Online Library Management System------------------------------------");
@@ -114,14 +113,14 @@ static int current_user_index;
         System.out.println("Enter your choice: ");
         int admin_choice=sc.nextInt();
         if(admin_choice==1)
-            admin_login();
+            ad_log();
         else if(admin_choice==2)
-            admin_signup();
+            ad_signup();
         else if(admin_choice==3)
-            welcome();
+            Welcome();
             
     }
-    public static void admin_login(){
+    public static void ad_log(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("------------------------------------Admin Login-----------------------------------");
@@ -135,7 +134,7 @@ static int current_user_index;
             System.out.println("Enter your password :");
             int password=sc.nextInt();
             if(admin_password.get(current_admin_index)==password){
-                admin_next();
+                ad_Next();
             }
             else{
                 System.out.println("Incorrect Password");
@@ -145,7 +144,7 @@ static int current_user_index;
                 if(s.equals("")){
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
-                admin_login();
+                ad_log();
             }
 
         }
@@ -158,12 +157,12 @@ static int current_user_index;
         if(s.equals("")){
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        admin_signup();
+        ad_signup();
     }
        
 
     }}
-    public static void admin_signup(){
+    public static void ad_signup(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("----------------------------Admin SignUp--------------------------");
@@ -185,7 +184,7 @@ static int current_user_index;
             if(s.equals("")){
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            admin_signup();
+            ad_signup();
         }}
         else{
             System.out.println("Account created successfully");
@@ -196,11 +195,11 @@ static int current_user_index;
             if(s.equals("")){
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            admin_next();
+            ad_Next();
 
         }}
     }
-    public static void admin_next(){
+    public static void ad_Next(){
             System.out.print("\033[H\033[2J");
             System.out.flush();
             System.out.println("----------------------Admin --------------------");
@@ -220,7 +219,7 @@ static int current_user_index;
             else if(admin_choice==3)
                 edit_book();
             else if(admin_choice==4)
-                admin_next();
+                ad_Next();
     }
     public static void add_new_admin(){
         System.out.print("\033[H\033[2J");
@@ -245,7 +244,7 @@ static int current_user_index;
         if(s.equals("")){
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        admin_next();}
+        ad_Next();}
     }
     public static void add_new_learner(){
         System.out.print("\033[H\033[2J");
@@ -264,7 +263,7 @@ static int current_user_index;
         System.out.println("Learner's Id : "+learner_id.get(learner_id.size()-1));
         System.out.println();
         System.out.println("Enter the deposit amount : ");
-        System.out.println("* Minimum deposit amount is Rs.1500");
+        System.out.println("* Minimum deposit amount is Rs.1850");
         learner_deposit.add(sc.nextInt());
         System.out.println();
         System.out.println("Successfully new learner added");
@@ -274,7 +273,7 @@ static int current_user_index;
         if(s.equals("")){
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        admin_next();
+        ad_Next();
 
     }}
     public static void edit_book(){
@@ -304,7 +303,7 @@ static int current_user_index;
             else if(admin_choice==5)
                 view_book();
             else if(admin_choice==6)
-                admin_next();
+                ad_Next();
     }
     public static void add_new_book(){
         System.out.print("\033[H\033[2J");
@@ -537,7 +536,7 @@ public static void learner(){
     if(learner_choice==1)
         learner_login();
     else if(learner_choice==2)
-        welcome();
+        Welcome();
 }
 public static void learner_login(){
     System.out.print("\033[H\033[2J");
