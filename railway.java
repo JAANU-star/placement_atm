@@ -9,15 +9,15 @@ public class railway {
     static int ub=5,mb=3,lb=2;
     static int waiting=5;
     static String[] pp={"COVAI","TRIPUR","ERODE","SALEM","JOLARPETTAI","KATPADI","CHENNAI","covai","tripur","erode","salem","jolarpettai","katpadi","chennai"};
-    //---------------------------------------//
-    static ArrayList<String> l=new ArrayList<>(); //username
-    static ArrayList<String> l1=new ArrayList<>();//||password
-    //------------------------------------------------//
+    
+    static ArrayList<String> l=new ArrayList<>(); 
+    static ArrayList<String> l1=new ArrayList<>();
+    
     static ArrayList<String> b=new ArrayList<>();
     static ArrayList<String> b1=new ArrayList<>();
     static ArrayList<String> b2=new ArrayList<>();
     static ArrayList<String> b3=new ArrayList<>();
-   static ArrayList<String> tn=new ArrayList<>();//waiting list
+   static ArrayList<String> tn=new ArrayList<>();
    static ArrayList<String> tn1=new ArrayList<>();
    static ArrayList<String> tn2=new ArrayList<>();
    static ArrayList<String> tn4=new ArrayList<>();
@@ -34,7 +34,7 @@ public class railway {
         System.out.println("\t\t -----WELCOME TO IRCTC TRAIN BOOKING-----");
         System.out.println();
         System.out.println("1.USER");
-        System.out.println("2.ADMIN");
+        System.out.println("2.ad");
         System.out.println("3.EXIT");
         System.out.println();
         k=sc.nextInt();
@@ -53,7 +53,7 @@ public class railway {
                 case 1:{
                 user();}
                 case 2:{
-                    admin();
+                    ad();
                 }
                 case 3:{
                 welcome();}
@@ -64,14 +64,14 @@ public class railway {
         System.out.print("\033[H\033[2J");
         System.out.flush();
         System.out.println("\t\tHELLO!!!");
-      System.out.println("1. LOGIN");
+      System.out.println("1. log");
       System.out.println("2. SIGN UP");
       System.out.println("3. EXIT");
       System.out.println();
       int y=sc.nextInt();
       if(y==1)
       {
-          login();
+          log();
       }
       else if(y==2)
       {
@@ -82,11 +82,11 @@ public class railway {
           welcome();
       }
     }
-   public static void login()
+   public static void log()
    {
     System.out.print("\033[H\033[2J");
     System.out.flush();
-       System.out.println("\t\tWELCOME TO LOGIN PAGE");
+       System.out.println("\t\tWELCOME TO log PAGE");
        System.out.println("ENTER YOUR NAME");
        String h=sc.next();
        res=l.indexOf(h);
@@ -186,11 +186,11 @@ public class railway {
        System.out.println("ENTER YOUR DEPATURE INTERMEDIATE");
         r=sc.next();
         po=Arrays.asList(pp).indexOf(r);
-       // System.out.println(po);
+       
         System.out.println("ENTER THE DESTINATION");
         r1=sc.next();
         po1=Arrays.asList(pp).indexOf(r1);
-        //System.out.println(po1);
+        
        if(r.equals(r1))
        {
           error();
@@ -237,8 +237,7 @@ public class railway {
  
 public static void show()
 {
-    //System.out.print("\033[H\033[2J");
-    //System.out.flush();
+    
     System.out.println("1.AC (OR) 2.NON-AC");
     h=sc.nextInt();
     if(h==1)
@@ -392,7 +391,7 @@ public static void changepass()
            sc.nextLine();
            String s=sc.nextLine();
            if(s.equals(""))
-          login();
+          log();
 
     }
     else{
@@ -414,12 +413,12 @@ public static void waiting()
            sc.nextLine();
            String s=sc.nextLine();
            if(s.equals(""))
-        login();
+        log();
     }
     else{
     System.out.println("YOUR ARE ON WAITING LIST");
             waiting-=p;
-           // lll=p;
+           
             tn.add(r);
             tn1.add(r1);
             if(h==1)
@@ -430,7 +429,7 @@ public static void waiting()
            sc.nextLine();
            String s=sc.nextLine();
            if(s.equals(""))
-           login();
+           log();
     }
 
 }
@@ -442,13 +441,13 @@ public static void cancel()
     if(u==10)
     {
         System.out.println("ENTER YOUR ID");
-        int hhhhh=sc.nextInt();
+        int jjjjj=sc.nextInt();
         seat+=p;
         RAC+=p;
-        b.remove(hhhhh);
-        b1.remove(hhhhh);
-        b2.remove(hhhhh);
-        b3.remove(hhhhh);
+        b.remove(jjjjj);
+        b1.remove(jjjjj);
+        b2.remove(jjjjj);
+        b3.remove(jjjjj);
         bk--;
         System.out.println("TICKET CANCELLED");
         if(tn.contains(r)&&tn1.contains(r1))
@@ -493,9 +492,9 @@ public static void twoticket()
          b3.add("NON-AC");
          view();
 } 
-public static void admin()
+public static void ad()
 {
-    System.out.println("\t\tWELCOME ADMIN");
+    System.out.println("\t\tWELCOME ad");
     System.out.println("ENTER THE NAME");
     String p=sc.next();
     System.out.println("ENTER THE PASSWORD");
